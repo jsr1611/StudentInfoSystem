@@ -17,6 +17,8 @@ public class Controller {
 
     @GetMapping("/displayAll")
     public List<Student> getAll(){
+        System.out.println("/displayAll API endpoint was called");
+        System.out.println(main.displayAll().size());
         return main.displayAll();
     }
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="css/styles.css">
+<title>X University</title>
+<body>
+<h2 id="home">Student Information System</h2>
+<button id="exit">Exit</button>
+<div id="menu">
+    <button onclick="location.href='add'">Add</button>
+    <button>Remove</button>
+    <button>Find</button>
+    <button onclick="location.href='displayAll'">Display All</button>
+</div>
+<script>
+    const btnExit = document.getElementById("exit");
+    const home = document.getElementById("home");
+
+    function GoHome(event){
+        let linkHome = document.createElement("a");
+        linkHome.href = "/";
+        linkHome.click();
+    }
+
+    function handleExit(event){
+        let response = confirm("Do you really want to exit the application?");
+        if(response){
+            window.close();
+        }
+    }
+    home.addEventListener("click", GoHome);
+    btnExit.addEventListener("click", handleExit);
+</script>
+</body>
+</html>

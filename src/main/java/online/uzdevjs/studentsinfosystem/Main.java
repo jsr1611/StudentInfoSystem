@@ -18,8 +18,8 @@ public class Main {
 
     private Main(){
         allStudents = new ArrayList<>();
-        Student ali = new Undergraduate(1L, "Ali Talib", "Uzbek", "M", "Computer Science", 2022, "undergraduate", "Future Leaders Hall");
-        Student vali = new Postgraduate(2L, "Vali Talib", "Uzbek", "M", "Physics", 2021, "postgraduate", "Alaeldin", "Novel Computer Vision Techniques in the Deep Learning space");
+        Student ali = new Undergraduate(1L, "Ali Talib", "Uzbek", "M", "Computer Science", 2022, "UNDERGRADUATE", "Future Leaders Hall");
+        Student vali = new Postgraduate(2L, "Vali Talib", "Uzbek", "M", "Physics", 2021, "POSTGRADUATE", "Alaeldin", "Novel Computer Vision Techniques in the Deep Learning space");
         allStudents.add(ali);
         allStudents.add(vali);
     }
@@ -32,7 +32,7 @@ public class Main {
 
     public void add(StudentDTO student){
         Student st = null;
-        if(student.getLevel().equals("Postgraduate")){
+        if(student.getLevel().equals(StudentLevel.POSTGRADUATE)){
             st = new Postgraduate(
                     student.getStudentID(),
                     student.getFullName(),
@@ -40,10 +40,10 @@ public class Main {
                     student.getGender(),
                     student.getFaculty(),
                     student.getAddmissionYear(),
-                    student.getLevel(),
+                    student.getLevel().toString(),
                     student.getSupervisorName(),
                     student.getResearchTopic());
-        }else if(student.getLevel().equals("Undergraduate")){
+        }else if(student.getLevel().equals(StudentLevel.UNDERGRADUATE)){
             st = new Undergraduate(
                     student.getStudentID(),
                     student.getFullName(),
@@ -51,7 +51,7 @@ public class Main {
                     student.getGender(),
                     student.getFaculty(),
                     student.getAddmissionYear(),
-                    student.getLevel(),
+                    student.getLevel().toString(),
                     student.getResidentialHall()
             );
         }
@@ -77,11 +77,4 @@ public class Main {
     public List<Student> displayAll(){
         return allStudents;
     }
-
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        resp.setContentType("text/html");
-//        req.setAttribute("students", displayAll());
-//        req.getRequestDispatcher("/displayAll.jsp").forward(req,resp);
-//    }
 }

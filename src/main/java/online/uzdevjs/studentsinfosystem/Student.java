@@ -13,7 +13,7 @@ public abstract class Student {
     private String gender;
     private String faculty;
     private Integer addmissionYear;
-    private String level;
+    private StudentLevel level;
 
     public String getFullName() {
         return fullName;
@@ -23,12 +23,20 @@ public abstract class Student {
         this.fullName = fullName;
     }
 
-    public String getLevel() {
+    public StudentLevel getLevel() {
         return level;
     }
 
     public void setLevel(String level) {
-        this.level = level;
+        if(level.equalsIgnoreCase("postgraduate")){
+            this.level = StudentLevel.POSTGRADUATE;
+        }
+        else if(level.equalsIgnoreCase("undergraduate")){
+            this.level = StudentLevel.UNDERGRADUATE;
+        }
+        else {
+            throw new IllegalStateException("Wrong student level: " + level);
+        }
     }
 
     public Student(Long studentID, String fullName, String nationality, String gender, String faculty, Integer addmissionYear, String level) {
@@ -38,7 +46,7 @@ public abstract class Student {
         this.gender = gender;
         this.faculty = faculty;
         this.addmissionYear = addmissionYear;
-        this.level = level;
+        setLevel(level);
     }
 
     public Student() {

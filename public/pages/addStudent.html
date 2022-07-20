@@ -13,64 +13,64 @@
 <form action="../../add" method="post" id="addForm">
     <div>
         <p>Student ID</p>
-        <input type="number" placeholder="Enter student ID" value="" required>
+        <input type="number" placeholder="Enter student ID" name="studentID" value="" required>
     </div>
     <div>
         <p>Full Name</p>
-        <input type="text" placeholder="Enter full name" value="" required>
+        <input type="text" placeholder="Enter full name" value="" name="fullName" required>
     </div>
     <div>
         <p>Nationality</p>
-        <input type="text" placeholder="Enter nationality" value="" required>
+        <input type="text" placeholder="Enter nationality" value="" name="nationality" required>
     </div>
     <div>
         <fieldset>
             <legend id="legendGender"> Gender</legend>
             <div>
-                <input type="radio" id="male" name="gender">
+                <input type="radio" id="male" name="gender" value="male">
                 <label for="male">Male</label>
             </div>
             <div>
-                <input type="radio" id="female" name="gender">
+                <input type="radio" id="female" name="gender" value="female">
                 <label for="female">Female</label>
             </div>
         </fieldset>
     </div>
     <div>
         <p>Faculty</p>
-        <input type="text" placeholder="Enter faculty" value="" required>
+        <input type="text" placeholder="Enter faculty" value="" name="faculty" required>
     </div>
     <div>
         <p>Admission Year</p>
-        <input type="number" placeholder="Enter year of admission" value="" required>
+        <input type="number" placeholder="Enter year of admission" value="" name="admissionYear" required>
     </div>
     <div>
         <fieldset>
             <legend id="legendLevel"> Level</legend>
             <div>
-                <input type="radio" id="uggrad" name="level" value="0" onclick="handleLevelSelect(this)">
+                <input type="radio" id="uggrad" name="level" value="undergraduate" onclick="handleLevelSelect(this)">
                 <label for="uggrad">Undergraduate</label>
             </div>
             <div>
-                <input type="radio" id="postgrad" name="level" value="1" onclick="handleLevelSelect(this)">
+                <input type="radio" id="postgrad" name="level" value="postgraduate" onclick="handleLevelSelect(this)">
                 <label for="postgrad">Postgraduate</label>
             </div>
         </fieldset>
     </div>
     <div id="resHall" hidden>
         <p>Residential Hall</p>
-        <input type="text" placeholder="Enter residential hall name" value="">
+        <input type="text" placeholder="Enter residential hall name" value="" name="residentialHall">
     </div>
     <div id="supervisor" hidden>
         <p>Supervisor Name</p>
-        <input type="text" placeholder="Enter supervisor's name" value="">
+        <input type="text" placeholder="Enter supervisor's name" value="" name="supervisorName">
     </div>
     <div id="rtopic" hidden>
         <p>Research Topic</p>
-        <input type="text" placeholder="Enter research topic title" value="">
+        <input type="text" placeholder="Enter research topic title" value="" name="researchTopic">
     </div> <br>
     <div id="addButton">
-        <input type="submit" value="Submit">
+        <button type="submit">Submit</button>
     </div>
 </form>
 
@@ -83,12 +83,12 @@
 
     function handleLevelSelect(selectedLevel){
         level = selectedLevel.value;
-        if(level === "0"){
+        if(level === "undergraduate"){
             resHall.hidden = false;
             supervisor.hidden = true;
             rtopic.hidden = true;
         }
-        else if(level === "1") {
+        else if(level === "postgraduate") {
             supervisor.hidden = false;
             rtopic.hidden = false;
             resHall.hidden = true;

@@ -133,8 +133,6 @@
             researchTopic: rtopic,
         };
 
-        console.log(formData);
-        console.log(JSON.stringify(formData));
         fetch("https://xuni-studentinfo.herokuapp.com/add", {
             method: 'POST',
             body: JSON.stringify(formData),
@@ -143,16 +141,13 @@
             },
         })
         .then((response) => {
-            console.log("success");
-            console.log(response);
             let link = document.createElement("a");
             link.href = "./displayAll.html";
-            // link.click();
+            link.click();
         })
         .catch((error) => {
             console.log(error);
         });
-        console.log("Finished. With error?");
 
     }
 

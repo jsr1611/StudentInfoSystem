@@ -17,14 +17,11 @@ public class Controller {
 
     @GetMapping("/displayAll")
     public List<Student> getAll(){
-        System.out.println("/displayAll API endpoint was called");
-        System.out.println(main.displayAll().size());
         return main.displayAll();
     }
 
     @PostMapping("/add")
     public StudentDTO add(@RequestBody StudentDTO student){
-        System.out.println(student.toString());
         main.add(student);
         return student;
     }

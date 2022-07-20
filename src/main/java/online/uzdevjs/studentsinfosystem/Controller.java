@@ -23,7 +23,7 @@ public class Controller {
     }
 
     @PostMapping("/add")
-    public StudentDTO add(StudentDTO student){
+    public StudentDTO add(@RequestBody StudentDTO student){
         System.out.println(student.toString());
         main.add(student);
         return student;

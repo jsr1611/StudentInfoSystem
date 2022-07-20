@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Document</title>
+</head>
+<body>
+<script src="../js/header.js"></script>
+<div style="text-align: center;">
+    <h3> Student Information</h3>
+</div>
+<table >
+    <thead>
+    <tr>
+        <th>Student ID</th>
+        <th>Full Name</th>
+        <th>Nationality</th>
+        <th>Gender</th>
+        <th>Faculty</th>
+        <th>Admission Year</th>
+        <th>Level</th>
+        <th>Residential Hall</th>
+        <th>Supervisor Name</th>
+        <th>Research Topic</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+
+    <script>
+        const UGGRAD = "UNDERGRADUATE";
+        const PGGRAD = "POSTGRADUATE";
+        const tbody = document.getElementById("tbody");
+        let records = [];
+        fetch("http://xuni-studentinfo.herokuapp.com/displayAll")
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("data:")
+                console.log(data);
+                records = data;
+                displayIt(records);
+            });
+
+        function createEl(tag, val){
+            const el = document.createElement(tag);
+            el.innerText = val;
+            return el;
+        }
+
+        function displayIt(records){
+            records.forEach(rec => {
+                let tr = document.createElement("tr");
+                let resHall = "N/A";
+                let supervisor = "N/A";
+                let rtopic = "N/A";
+                if(rec.level === UGGRAD){
+                    resHall = rec.residentialHall;
+                }
+                else if(rec.level === PGGRAD){
+                    supervisor = rec.supervisorName;
+                    rtopic = rec.researchTopic;
+                }
+
+                tr.appendChild(createEl("th", rec.studentID));
+                tr.appendChild(createEl("th", rec.fullName));
+                tr.appendChild(createEl("th", rec.nationality));
+                tr.appendChild(createEl("th", rec.gender));
+                tr.appendChild(createEl("th", rec.faculty));
+                tr.appendChild(createEl("th", rec.addmissionYear));
+                tr.appendChild(createEl("th", rec.level));
+                tr.appendChild(createEl("th", resHall));
+                tr.appendChild(createEl("th", supervisor));
+                tr.appendChild(createEl("th", rtopic));
+                tbody.appendChild(tr);
+            });
+
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<h1>Add a New Student </h1>
+<form action="./add" method="post">
+    <p>Student ID</p>
+    <input type="number" placeholder="Enter student ID" value="" required>
+    <p>Full Name</p>
+    <input type="text" placeholder="Enter full name" value="" required>
+    <p>Nationality</p>
+    <input type="text" placeholder="Enter nationality" value="" required>
+    <fieldset>
+        <legend id="legendGender"> Gender</legend>
+        <div>
+            <input type="radio" id="male" name="gender">
+            <label for="male">Male</label>
+        </div>
+        <div>
+            <input type="radio" id="female" name="gender">
+            <label for="female">Female</label>
+        </div>
+    </fieldset>
+    <p>Faculty</p>
+    <input type="text" placeholder="Enter faculty" value="" required>
+    <p>Admission Year</p>
+    <input type="number" placeholder="Enter year of admission" value="" required>
+    <fieldset>
+        <legend id="legendLevel"> Level</legend>
+        <div>
+            <input type="radio" id="uggrad" name="level" value="0">
+            <label for="uggrad">Undergraduate</label>
+        </div>
+        <div>
+            <input type="radio" id="postgrad" name="level" value="1">
+            <label for="postgrad">Postgraduate</label>
+        </div>
+    </fieldset>
+    <div id="resHall" hidden>
+        <p>Residential Hall</p>
+        <input type="text" placeholder="Enter residential hall name" value="">
+    </div>
+    <div id="supervisor" hidden>
+        <p>Supervisor Name</p>
+        <input type="text" placeholder="Enter supervisor's name" value="">
+    </div>
+    <div id="rtopic" hidden>
+        <p>Research Topic</p>
+        <input type="text" placeholder="Enter research topic title" value="">
+    </div> <br>
+    <input type="submit" value="Submit">
+</form>
+
+
+<script>
+    const resHall = document.getElementById("resHall");
+    const supervisor = document.getElementById("supervisor");
+    const rtopic = document.getElementById("rtopic");
+    let levels = document.getElementsByName("level");
+    let level = null;
+    for(let i=0; i < levels.length; i++){
+        if(levels[i].checked){
+            level = levels[i].value;
+        }
+    }
+    if(level != null){
+        if(level === 1){
+            resHall.hidden = false;
+        }
+        else {
+            supervisor.hidden = false;
+            rtopic.hidden = false;
+        }
+    }
+    //querySelector('input[name="level"]:checked').value;
+</script>

@@ -10,39 +10,39 @@
     }
 </style>
 <h1 id="addHeader">Add a New Student </h1>
-<form action="https://xuni-studentinfo.herokuapp.com/add" method="post" id="addForm">
+<form method="post" id="addForm">
     <div>
         <p>Student ID</p>
-        <input type="number" placeholder="Enter student ID" name="studentID" value="" required>
+        <input type="number" placeholder="Enter student ID" id="studentID" required>
     </div>
     <div>
         <p>Full Name</p>
-        <input type="text" placeholder="Enter full name" value="" name="fullName" required>
+        <input type="text" placeholder="Enter full name" value="" id="fullName" required>
     </div>
     <div>
         <p>Nationality</p>
-        <input type="text" placeholder="Enter nationality" value="" name="nationality" required>
+        <input type="text" placeholder="Enter nationality" value="" id="nationality" required>
     </div>
     <div>
         <fieldset>
             <legend id="legendGender"> Gender</legend>
             <div>
-                <input type="radio" id="male" name="gender" value="male">
+                <input type="radio" id="male" name="gender" value="M" onclick="handleGenderSelect(this)">
                 <label for="male">Male</label>
             </div>
             <div>
-                <input type="radio" id="female" name="gender" value="female">
+                <input type="radio" id="female" name="gender" value="F" onclick="handleGenderSelect(this)">
                 <label for="female">Female</label>
             </div>
         </fieldset>
     </div>
     <div>
         <p>Faculty</p>
-        <input type="text" placeholder="Enter faculty" value="" name="faculty" required>
+        <input type="text" placeholder="Enter faculty" value="" id="faculty" required>
     </div>
     <div>
         <p>Admission Year</p>
-        <input type="number" placeholder="Enter year of admission" value="" name="admissionYear" required>
+        <input type="number" placeholder="Enter year of admission" value="" id="admissionYear" required>
     </div>
     <div>
         <fieldset>
@@ -59,43 +59,103 @@
     </div>
     <div id="resHall" hidden>
         <p>Residential Hall</p>
-        <input type="text" placeholder="Enter residential hall name" value="" name="residentialHall">
+        <input type="text" placeholder="Enter residential hall name" id="residentialHall">
     </div>
     <div id="supervisor" hidden>
         <p>Supervisor Name</p>
-        <input type="text" placeholder="Enter supervisor's name" value="" name="supervisorName">
+        <input type="text" placeholder="Enter supervisor's name" value="" id="supervisorName">
     </div>
     <div id="rtopic" hidden>
         <p>Research Topic</p>
-        <input type="text" placeholder="Enter research topic title" value="" name="researchTopic">
+        <input type="text" placeholder="Enter research topic title" value="" id="researchTopic">
     </div> <br>
     <div id="addButton">
-        <button type="submit">Submit</button>
+        <button id="formSubmit">Submit</button>
     </div>
 </form>
 
 
 <script>
-    const resHall = document.getElementById("resHall");
-    const supervisor = document.getElementById("supervisor");
-    const rtopic = document.getElementById("rtopic");
-    let level = "-1";
+
+    const formSubmitBtn = document.getElementById("formSubmit");
+    let stdID = document.getElementById("studentID");
+    let name =  document.getElementById("fullName");
+    let nationalityVal = document.getElementById("nationality");
+    let genderVal = "";
+    let facultyVal = document.getElementById("faculty");
+    let admYear = document.getElementById("admissionYear");
+    let levelOfDegree = "";
+    let resHall = "N/A", supervisor = "N/A", rtopic = "N/A";
+    const resHallEl = document.getElementById("resHall");
+    const supervisorEl = document.getElementById("supervisor");
+    const rtopicEl = document.getElementById("rtopic");
+
+
+
+    function handleGenderSelect(selectedGender){
+        genderVal = selectedGender;
+    }
 
     function handleLevelSelect(selectedLevel){
-        level = selectedLevel.value;
-        if(level === "undergraduate"){
-            resHall.hidden = false;
-            supervisor.hidden = true;
-            rtopic.hidden = true;
+        levelOfDegree = selectedLevel;
+        if(levelOfDegree.value === "undergraduate"){
+            resHallEl.hidden = false;
+            supervisorEl.hidden = true;
+            rtopicEl.hidden = true;
         }
-        else if(level === "postgraduate") {
-            supervisor.hidden = false;
-            rtopic.hidden = false;
-            resHall.hidden = true;
+        else if(levelOfDegree.value === "postgraduate") {
+            supervisorEl.hidden = false;
+            rtopicEl.hidden = false;
+            resHallEl.hidden = true;
         }
         else{
             console.log("couldn't detect level select event value");
         }
     }
+
+    function handleSubmitForm(event){
+        event.preventDefault();
+        resHall = resHallEl.querySelector("input").value;
+        console.log(stdID.value);
+        supervisor = supervisorEl.querySelector("input").value;
+        rtopic = rtopicEl.querySelector("input").value;
+
+        let formData = {
+            studentID: Number(stdID.value),
+            fullName: name.value,
+            nationality: nationalityVal.value,
+            gender: genderVal.value,
+            faculty: facultyVal.value,
+            admissionYear: Number(admYear.value),
+            level: levelOfDegree.value,
+            residentialHall: resHall,
+            supervisorName: supervisor,
+            researchTopic: rtopic,
+        };
+
+        console.log(formData);
+        console.log(JSON.stringify(formData));
+        fetch("https://xuni-studentinfo.herokuapp.com/add", {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+            },
+        })
+        .then((response) => {
+            console.log("success");
+            console.log(response);
+            let link = document.createElement("a");
+            link.href = "./displayAll.html";
+            // link.click();
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+        console.log("Finished. With error?");
+
+    }
+
+    formSubmitBtn.addEventListener("click", handleSubmitForm);
 </script>
 

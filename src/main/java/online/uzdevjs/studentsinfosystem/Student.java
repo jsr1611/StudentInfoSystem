@@ -28,10 +28,11 @@ public abstract class Student {
     }
 
     public void setLevel(String level) {
-        if(level.equalsIgnoreCase("postgraduate")){
+        System.out.println(level);
+        if(level != null && level.equalsIgnoreCase("postgraduate")){
             this.level = StudentLevel.POSTGRADUATE;
         }
-        else if(level.equalsIgnoreCase("undergraduate")){
+        else if(level != null && level.equalsIgnoreCase("undergraduate")){
             this.level = StudentLevel.UNDERGRADUATE;
         }
         else {
@@ -39,13 +40,13 @@ public abstract class Student {
         }
     }
 
-    public Student(Long studentID, String fullName, String nationality, String gender, String faculty, Integer addmissionYear, String level) {
+    public Student(Long studentID, String fullName, String nationality, String gender, String faculty, Integer admissionYear, String level) {
         this.studentID = studentID;
         this.fullName = fullName;
         this.nationality = nationality;
         this.gender = gender;
         this.faculty = faculty;
-        this.admissionYear = addmissionYear;
+        this.admissionYear = admissionYear;
         setLevel(level);
     }
 

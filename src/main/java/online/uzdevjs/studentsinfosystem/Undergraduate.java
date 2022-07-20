@@ -10,8 +10,8 @@ package online.uzdevjs.studentsinfosystem;
 public class Undergraduate extends Student {
     private String residentialHall;
 
-    public Undergraduate(Long studentID, String fullName, String nationality, String gender, String faculty, Integer addmissionYear, String level, String residentialHall) {
-        super(studentID, fullName, nationality, gender, faculty, addmissionYear, level);
+    public Undergraduate(Long studentID, String fullName, String nationality, String gender, String faculty, Integer admissionYear, String level, String residentialHall) {
+        super(studentID, fullName, nationality, gender, faculty, admissionYear, level);
         this.residentialHall = residentialHall;
     }
 

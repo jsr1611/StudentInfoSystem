@@ -11,8 +11,8 @@ public class StudentDTO extends Student{
     private String supervisorName;
     private String researchTopic;
 
-    public StudentDTO(Long studentID, String fullName, String nationality, String gender, String faculty, Integer addmissionYear, String level, String residentialHall, String supervisorName, String researchTopic) {
-        super(studentID, fullName, nationality, gender, faculty, addmissionYear, level);
+    public StudentDTO(Long studentID, String fullName, String nationality, String gender, String faculty, Integer admissionYear, String level, String residentialHall, String supervisorName, String researchTopic) {
+        super(studentID, fullName, nationality, gender, faculty, admissionYear, level);
         this.residentialHall = residentialHall;
         this.supervisorName = supervisorName;
         this.researchTopic = researchTopic;

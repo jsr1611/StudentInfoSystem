@@ -39,7 +39,7 @@ public class Main {
                     student.getNationality(),
                     student.getGender(),
                     student.getFaculty(),
-                    student.getAddmissionYear(),
+                    student.getAdmissionYear(),
                     student.getLevel().toString(),
                     student.getSupervisorName(),
                     student.getResearchTopic());
@@ -50,7 +50,7 @@ public class Main {
                     student.getNationality(),
                     student.getGender(),
                     student.getFaculty(),
-                    student.getAddmissionYear(),
+                    student.getAdmissionYear(),
                     student.getLevel().toString(),
                     student.getResidentialHall()
             );

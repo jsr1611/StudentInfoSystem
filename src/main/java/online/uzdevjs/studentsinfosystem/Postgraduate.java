@@ -11,8 +11,8 @@ public class Postgraduate extends Student{
     private String supervisorName;
     private String researchTopic;
 
-    public Postgraduate(Long studentID, String fullName, String nationality, String gender, String faculty, Integer addmissionYear, String level, String supervisorName, String researchTopic) {
-        super(studentID, fullName, nationality, gender, faculty, addmissionYear, level);
+    public Postgraduate(Long studentID, String fullName, String nationality, String gender, String faculty, Integer admissionYear, String level, String supervisorName, String researchTopic) {
+        super(studentID, fullName, nationality, gender, faculty, admissionYear, level);
         this.supervisorName = supervisorName;
         this.researchTopic = researchTopic;
     }

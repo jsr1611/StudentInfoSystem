@@ -100,7 +100,7 @@ public abstract class Student {
                 ", nationality='" + nationality + '\'' +
                 ", gender='" + gender + '\'' +
                 ", faculty='" + faculty + '\'' +
-                ", addmissionYear=" + admissionYear +
+                ", admissionYear=" + admissionYear +
                 ", level='" + level + '\'' +
                 '}';
     }

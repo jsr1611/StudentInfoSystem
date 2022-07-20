@@ -24,6 +24,7 @@ public class Controller {
 
     @PostMapping("/add")
     public StudentDTO add(StudentDTO student){
+        System.out.println(student.toString());
         main.add(student);
         return student;
     }

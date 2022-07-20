@@ -28,7 +28,6 @@ public abstract class Student {
     }
 
     public void setLevel(String level) {
-        System.out.println(level);
         if(level != null && level.equalsIgnoreCase("postgraduate")){
             this.level = StudentLevel.POSTGRADUATE;
         }

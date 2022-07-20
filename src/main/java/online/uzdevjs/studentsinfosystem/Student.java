@@ -12,7 +12,7 @@ public abstract class Student {
     private String nationality;
     private String gender;
     private String faculty;
-    private Integer addmissionYear;
+    private Integer admissionYear;
     private StudentLevel level;
 
     public String getFullName() {
@@ -45,7 +45,7 @@ public abstract class Student {
         this.nationality = nationality;
         this.gender = gender;
         this.faculty = faculty;
-        this.addmissionYear = addmissionYear;
+        this.admissionYear = addmissionYear;
         setLevel(level);
     }
 
@@ -84,12 +84,12 @@ public abstract class Student {
         this.faculty = faculty;
     }
 
-    public Integer getAddmissionYear() {
-        return addmissionYear;
+    public Integer getAdmissionYear() {
+        return admissionYear;
     }
 
-    public void setAddmissionYear(Integer addmissionYear) {
-        this.addmissionYear = addmissionYear;
+    public void setAdmissionYear(Integer admissionYear) {
+        this.admissionYear = admissionYear;
     }
 
     @Override
@@ -100,7 +100,7 @@ public abstract class Student {
                 ", nationality='" + nationality + '\'' +
                 ", gender='" + gender + '\'' +
                 ", faculty='" + faculty + '\'' +
-                ", addmissionYear=" + addmissionYear +
+                ", addmissionYear=" + admissionYear +
                 ", level='" + level + '\'' +
                 '}';
     }

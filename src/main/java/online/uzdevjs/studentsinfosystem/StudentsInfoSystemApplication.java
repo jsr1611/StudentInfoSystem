@@ -21,7 +21,7 @@ public class StudentsInfoSystemApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*");
+                registry.addMapping("/**").allowedOrigins("*").allowedMethods("POST", "DELETE", "PUT");
             }
         };
     }

@@ -1,16 +1,22 @@
-package online.uzdevjs.studentsinfosystem;
+package online.uzdevjs.studentsinfosystem.service;
+
+import online.uzdevjs.studentsinfosystem.dto.Response;
+import online.uzdevjs.studentsinfosystem.enums.StudentLevel;
+import online.uzdevjs.studentsinfosystem.dto.StudentDTO;
+import online.uzdevjs.studentsinfosystem.model.Postgraduate;
+import online.uzdevjs.studentsinfosystem.model.Student;
+import online.uzdevjs.studentsinfosystem.model.Undergraduate;
+import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Project Students Info System
  * Author: jimmy
  * Created: 7/19/2022 - 6:54 PM
  */
-
 
 public class Main {
     private static List<Student> allStudents = null;
@@ -30,7 +36,7 @@ public class Main {
         return singleInstance;
     }
 
-    public void add(StudentDTO student){
+    public Response add(StudentDTO student){
         Student st = null;
         if(student.getLevel().equals(StudentLevel.POSTGRADUATE)){
             st = new Postgraduate(
@@ -56,12 +62,21 @@ public class Main {
             );
         }
         else {
-            throw new RuntimeException("Wrong information was provided");
+            return new Response(false, "Wrong information was provided", HttpStatus.OK);
         }
         allStudents.add(st);
+        return new Response(true, "New student record has been successfully added.", st, HttpStatus.OK);
     }
-    public void remove(final Long studentID){
-        allStudents.removeIf(student -> student.getStudentID().equals(studentID));
+
+    public Response remove(final Long studentID){
+        Response response;
+        if(findById(studentID) != null){
+            allStudents.removeIf(student -> student.getStudentID().equals(studentID));
+            response = new Response(true, "Student record has been successfully deleted", HttpStatus.OK);
+        }else {
+            response = new Response(false, "Student with " + studentID + " id was not found.", HttpStatus.OK);
+        }
+        return response;
     }
     public Student findById(Long studentId){
         List<Student> collect = allStudents.stream().filter(student -> student.getStudentID().equals(studentId)).collect(Collectors.toList());
@@ -71,10 +86,21 @@ public class Main {
            return found;
         }
         return null;
-
     }
 
-    public List<Student> displayAll(){
-        return allStudents;
+    public Response find(Long studentId){
+        Student student = findById(studentId);
+        Response response;
+        if(student != null){
+            response = new Response(true, "Student Info", student, HttpStatus.OK);
+        }
+        else {
+            response = new Response(false, "Student with " + studentId + " id was not found.", HttpStatus.OK);
+        }
+            return response;
+    }
+
+    public Response getAll(){
+        return new Response(true, "All records", allStudents, HttStatus.OK);
     }
 }

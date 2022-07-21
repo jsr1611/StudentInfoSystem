@@ -1,30 +1,25 @@
-package online.uzdevjs.studentsinfosystem;
+package online.uzdevjs.studentsinfosystem.model;
 
 /**
  * Project Students Info System
  * Author: jimmy
- * Created: 7/20/2022 - 3:17 AM
+ * Created: 7/19/2022 - 6:53 PM
  */
 
-public class StudentDTO extends Student{
-    private String residentialHall;
+
+public class Postgraduate extends Student{
     private String supervisorName;
     private String researchTopic;
 
-    public StudentDTO(Long studentID, String fullName, String nationality, String gender, String faculty, Integer admissionYear, String level, String residentialHall, String supervisorName, String researchTopic) {
+    public Postgraduate(Long studentID, String fullName, String nationality, String gender, String faculty, Integer admissionYear, String level, String supervisorName, String researchTopic) {
         super(studentID, fullName, nationality, gender, faculty, admissionYear, level);
-        this.residentialHall = residentialHall;
         this.supervisorName = supervisorName;
         this.researchTopic = researchTopic;
     }
 
-
-    public String getResidentialHall() {
-        return residentialHall;
-    }
-
-    public void setResidentialHall(String residentialHall) {
-        this.residentialHall = residentialHall;
+    public Postgraduate(String supervisorName, String researchTopic) {
+        this.supervisorName = supervisorName;
+        this.researchTopic = researchTopic;
     }
 
     public String getSupervisorName() {
@@ -45,10 +40,9 @@ public class StudentDTO extends Student{
 
     @Override
     public String toString() {
-        return "StudentDTO{" +
+        return  "Postgraduate{" +
                 super.toString() +
-                "residentialHall='" + residentialHall + '\'' +
-                ", supervisorName='" + supervisorName + '\'' +
+                "supervisorName='" + supervisorName + '\'' +
                 ", researchTopic='" + researchTopic + '\'' +
                 '}';
     }

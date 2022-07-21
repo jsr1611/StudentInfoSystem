@@ -1,25 +1,32 @@
-package online.uzdevjs.studentsinfosystem;
+package online.uzdevjs.studentsinfosystem.dto;
+
+import online.uzdevjs.studentsinfosystem.model.Student;
 
 /**
  * Project Students Info System
  * Author: jimmy
- * Created: 7/19/2022 - 6:53 PM
+ * Created: 7/20/2022 - 3:17 AM
  */
 
-
-public class Postgraduate extends Student{
+public class StudentDTO extends Student {
+    private String residentialHall;
     private String supervisorName;
     private String researchTopic;
 
-    public Postgraduate(Long studentID, String fullName, String nationality, String gender, String faculty, Integer admissionYear, String level, String supervisorName, String researchTopic) {
+    public StudentDTO(Long studentID, String fullName, String nationality, String gender, String faculty, Integer admissionYear, String level, String residentialHall, String supervisorName, String researchTopic) {
         super(studentID, fullName, nationality, gender, faculty, admissionYear, level);
+        this.residentialHall = residentialHall;
         this.supervisorName = supervisorName;
         this.researchTopic = researchTopic;
     }
 
-    public Postgraduate(String supervisorName, String researchTopic) {
-        this.supervisorName = supervisorName;
-        this.researchTopic = researchTopic;
+
+    public String getResidentialHall() {
+        return residentialHall;
+    }
+
+    public void setResidentialHall(String residentialHall) {
+        this.residentialHall = residentialHall;
     }
 
     public String getSupervisorName() {
@@ -40,9 +47,10 @@ public class Postgraduate extends Student{
 
     @Override
     public String toString() {
-        return  "Postgraduate{" +
+        return "StudentDTO{" +
                 super.toString() +
-                "supervisorName='" + supervisorName + '\'' +
+                "residentialHall='" + residentialHall + '\'' +
+                ", supervisorName='" + supervisorName + '\'' +
                 ", researchTopic='" + researchTopic + '\'' +
                 '}';
     }

@@ -1,4 +1,4 @@
-package online.uzdevjs.studentsinfosystem;
+package online.uzdevjs.studentsinfosystem.model;
 
 /**
  * Project Students Info System

@@ -1,4 +1,6 @@
-package online.uzdevjs.studentsinfosystem;
+package online.uzdevjs.studentsinfosystem.model;
+
+import online.uzdevjs.studentsinfosystem.enums.StudentLevel;
 
 /**
  * Project Students Info System

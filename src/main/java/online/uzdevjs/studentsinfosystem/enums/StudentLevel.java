@@ -1,4 +1,4 @@
-package online.uzdevjs.studentsinfosystem;
+package online.uzdevjs.studentsinfosystem.enums;
 
 public enum StudentLevel {
     UNDERGRADUATE,

@@ -17,6 +17,8 @@
 <table id="table">
     <script src="../js/displayComponent.js"> </script>
 </table>
+<div id="message">
+</div>
     <script>
 
         let records = [];
@@ -34,7 +36,7 @@
                 }
             })
             .catch((error) =>{
-                displayMessage(error);
+                console.log(error);
             });
     </script>
 </body>

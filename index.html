@@ -117,6 +117,7 @@
         recordsTable.hidden = true;
         deleteBtn.style.visibility='';
         clearErrorMsg("p.msg");
+        deleteBtn.disabled=true;
     }
 
 
@@ -125,6 +126,7 @@
         findOrRemoveTitle.innerText = "Find A Student";
         findTempEl.style.display='inline-block';
         recordsTable.hidden = true;
+        deleteBtn.disabled = true;
 
     }
 
@@ -150,7 +152,9 @@
                         clearErrorMsg("p.msg");
                         clearTable();
                         displayIt([data.data]);
+                        deleteBtn.disabled = false;
                     } else {
+                        deleteBtn.disabled = true;
                         recordsTable.hidden = true;
                         displayMessage(data.message, "#findStudent .message");
                     }

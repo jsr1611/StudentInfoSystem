@@ -101,6 +101,6 @@ public class Main {
     }
 
     public Response getAll(){
-        return new Response(true, "All records", allStudents, HttStatus.OK);
+        return new Response(true, "All records", allStudents, HttpStatus.OK);
     }
 }

@@ -23,7 +23,7 @@ public class Controller {
 
     @PostMapping("/add")
     public Response add(@RequestBody StudentDTO student){
-        return main.add(student);;
+        return main.add(student);
     }
 
     @DeleteMapping("/{studentId}")

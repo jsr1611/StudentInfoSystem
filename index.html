@@ -55,13 +55,7 @@
     const findOrRemoveTitle = document.getElementById("findOrRemoveTitle");
     const deleteBtn = document.getElementById("multi-button");
 
-    function clearTable(){
-        let tbody = recordsTable.querySelector("tbody");
-        if(recordsTable.rows.length > 1){
-            console.log("big table");
-            tbody.innerHTML = "";
-        }
-    }
+
     function clearErrorMsg(qeuryTag){
         const msgEl = findTempEl.querySelector(qeuryTag);
         if(msgEl != null){

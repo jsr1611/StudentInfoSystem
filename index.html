@@ -50,7 +50,7 @@
 
     container.appendChild(findTemplate.content);
     const findTempEl = document.getElementById("findStudent");
-    findTempEl.hidden = true;
+    findTempEl.style.visibility='hidden';
 
     recordsTable.hidden = true;
     const findBtn = findTempEl.querySelector("#findBtn"),
@@ -76,10 +76,10 @@
 
     function displayAll(event){
         recordsTable.hidden = false;
-        findTempEl.hidden=true;
+        findTempEl.style.visibility='hidden';
         clearTable();
         let records = [];
-        fetch("http://xuni-studentinfo.herokuapp.com/displayAll")
+        fetch("http://xuni-studentinfo.herokuapp.com/")
             .then((response) => response.json())
             .then((data) => {
                 if(data.success){
@@ -112,7 +112,7 @@
     function handleRemove(event){
         event.preventDefault();
         findOrRemoveTitle.innerText = "Remove A Student";
-        findTempEl.hidden = false;
+        findTempEl.style.visibility='';
         recordsTable.hidden = true;
         deleteBtn.style.visibility='';
         clearErrorMsg("p.msg");
@@ -122,7 +122,7 @@
     function findStudent(event){
         deleteBtn.style.visibility='hidden';
         findOrRemoveTitle.innerText = "Find A Student";
-        findTempEl.hidden = false;
+        findTempEl.style.visibility='';
         recordsTable.hidden = true;
 
     }

@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
 }
-#findBtn{
+.findBtns{
     margin: auto 5px;
 }
 #message{

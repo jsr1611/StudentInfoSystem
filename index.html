@@ -27,13 +27,12 @@
     <script src="public/js/displayComponent.js"> </script>
 </table>
 
+
 <script>
     const btnExit = document.getElementById("exit");
     const home = document.getElementById("home");
     const container = document.getElementById("contents");
     const recordsTable = document.getElementById("recordsTable");
-
-
 
 
     const add = document.getElementById("add");
@@ -42,12 +41,8 @@
     const display = document.getElementById("display");
 
 
-
-    const removeTemplate = createTemplate("contents", "removeStudent",  "Remove A Student");
     const findTemplate = createTemplate("contents", "findStudent", "Find A Student");
-    container.appendChild(removeTemplate.content);
-    const removeTempEl = document.getElementById("removeStudent");
-    removeTempEl.hidden = true;
+
 
     container.appendChild(findTemplate.content);
     const findTempEl = document.getElementById("findStudent");
@@ -55,9 +50,10 @@
 
     recordsTable.hidden = true;
     const findBtn = findTempEl.querySelector("#findBtn"),
-        returnHomeBtn = findTempEl.querySelector("#returnHomeBtn"),
-        findBtnRm = removeTempEl.querySelector("#findBtn"),
-        returnHomeBtnRm = removeTempEl.querySelector("#returnHomeBtn");
+        returnHomeBtn = findTempEl.querySelector("#returnHomeBtn");
+
+    const findOrRemoveTitle = document.getElementById("findOrRemoveTitle");
+    const deleteBtn = document.getElementById("multi-button");
 
     function clearTable(){
         let tbody = recordsTable.querySelector("tbody");
@@ -82,6 +78,7 @@
 
     function displayAll(event){
         recordsTable.hidden = false;
+        findTempEl.hidden=true;
         clearTable();
         let records = [];
         fetch("http://xuni-studentinfo.herokuapp.com/displayAll")
@@ -116,28 +113,32 @@
 
     function handleRemove(event){
         event.preventDefault();
-        removeTempEl.hidden = false;
-        findTempEl.hidden = true;
+        findOrRemoveTitle.innerText = "Remove A Student";
+        findTempEl.hidden = false;
         recordsTable.hidden = true;
+        deleteBtn.style.visibility='';
+        clearErrorMsg("p.msg");
     }
 
 
     function findStudent(event){
-        removeTempEl.hidden = true;
+        deleteBtn.style.visibility='hidden';
+        findOrRemoveTitle.innerText = "Find A Student";
         findTempEl.hidden = false;
         recordsTable.hidden = true;
+
     }
 
 
     function displayOne(event){
-        event.preventDefault();
-
+        if(event != null){
+            event.preventDefault();
+        }
         const stdID = findTempEl.querySelector("#studentID");
         if(stdID.value === ""){
             displayMessage("Please, enter student ID to search!", "#findStudent .message");
         }
         else {
-
             fetch(`https://xuni-studentinfo.herokuapp.com/${stdID.value}`,
                 {
                     headers: {'accept': '*/*',},
@@ -159,11 +160,40 @@
                     console.log(error);
                 });
         }
+
     }
 
-    function removeStudent(event){
+    function deleteRecord(event){
         event.preventDefault();
         console.log("Removing student");
+        const stdID = findTempEl.querySelector("#studentID");
+        let response = confirm("Do you really want to delete this student record?");
+        if(response){
+            console.log(`https://xuni-studentinfo.herokuapp.com/${stdID.value}`);
+            fetch(`https://xuni-studentinfo.herokuapp.com/${stdID.value}`, {
+                method: 'delete',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    if(data.success){
+                        displayMessage(data.message, "#findStudent .message");
+                    }
+                    else {
+                        displayMessage("An unexpected error has occurred while adding new student record into system", "message addStudent");
+                    }
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
+        }
+
+
     }
 
 
@@ -176,11 +206,8 @@
     home.addEventListener("click", GoHome);
 
     findBtn.addEventListener("click", displayOne);
-    findBtnRm.addEventListener("click", removeStudent);
-
     returnHomeBtn.addEventListener("click", GoHome);
-    returnHomeBtnRm.addEventListener("click", GoHome);
-
+    deleteBtn.addEventListener("click", deleteRecord);
 
 </script>
 </body>

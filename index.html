@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="public/css/tableStyles.css">
 <link rel="stylesheet" href="public/css/findStyles.css">
 <title>X University</title>
+    <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Font_Awesome_5_solid_university.svg/1024px-Font_Awesome_5_solid_university.svg.png">
 </head>
 
 <body>
@@ -50,7 +51,7 @@
 
     container.appendChild(findTemplate.content);
     const findTempEl = document.getElementById("findStudent");
-    findTempEl.style.visibility='hidden';
+    findTempEl.style.display='none';
 
     recordsTable.hidden = true;
     const findBtn = findTempEl.querySelector("#findBtn"),
@@ -76,7 +77,7 @@
 
     function displayAll(event){
         recordsTable.hidden = false;
-        findTempEl.style.visibility='hidden';
+        findTempEl.style.display='none';
         clearTable();
         let records = [];
         fetch("http://xuni-studentinfo.herokuapp.com/")
@@ -112,7 +113,7 @@
     function handleRemove(event){
         event.preventDefault();
         findOrRemoveTitle.innerText = "Remove A Student";
-        findTempEl.style.visibility='';
+        findTempEl.style.display='inline-block';
         recordsTable.hidden = true;
         deleteBtn.style.visibility='';
         clearErrorMsg("p.msg");
@@ -122,7 +123,7 @@
     function findStudent(event){
         deleteBtn.style.visibility='hidden';
         findOrRemoveTitle.innerText = "Find A Student";
-        findTempEl.style.visibility='';
+        findTempEl.style.display='inline-block';
         recordsTable.hidden = true;
 
     }

@@ -2,16 +2,16 @@ const tableTemplate = document.createElement("template");
 tableTemplate.innerHTML = `
     <thead id="thead">
         <tr>
-            <th>Student ID</th>
-            <th>Full Name</th>
-            <th>Nationality</th>
-            <th>Gender</th>
-            <th>Faculty</th>
-            <th>Admission Year</th>
-            <th>Level</th>
-            <th>Residential Hall</th>
-            <th>Supervisor Name</th>
-            <th>Research Topic</th>
+            <th><i class="fa-solid fa-id-badge"></i>Student ID</th>
+            <th><i class="fa-solid fa-pen-nib"></i>Full Name</th>
+            <th><i class="fa-solid fa-globe"></i>Nationality</th>
+            <th><i class="fa-solid fa-mars-and-venus"></i>Gender</th>
+            <th><i class="fa-solid fa-school"></i>Faculty</th>
+            <th><i class="fa-solid fa-calendar-check"></i>Admission Year</th>
+            <th><i class="fa-solid fa-user-graduate"></i>Level</th>
+            <th><i class="fa-solid fa-location-dot"></i>Residential Hall</th>
+            <th><i class="fa-solid fa-chalkboard-user"></i>Supervisor Name</th>
+            <th><i class="fa-solid fa-book-open"></i>Research Topic</th>
         </tr>
     </thead>
     <tbody id="tbody">

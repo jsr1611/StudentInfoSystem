@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/tableStyles.css">
     <link rel="stylesheet" href="../css/addStyles.css">
+    <script src="https://kit.fontawesome.com/cef97b8c19.js" crossorigin="anonymous"></script>
     <title>Add A New Student </title>
 </head>
 <body>
@@ -14,65 +15,65 @@
     <div id="formContainer">
         <form method="post" id="addForm">
         <div>
-            <p>Student ID</p>
+            <p><i class="fa-solid fa-id-badge"></i>Student ID</p>
             <input type="number" placeholder="Enter student ID" id="studentID" required>
         </div>
         <div>
-            <p>Full Name</p>
+            <p><i class="fa-solid fa-pen-nib"></i>Full Name</p>
             <input type="text" placeholder="Enter full name" value="" id="fullName" required>
         </div>
         <div>
-            <p>Nationality</p>
+            <p><i class="fa-solid fa-globe"></i>Nationality</p>
             <input type="text" placeholder="Enter nationality" value="" id="nationality" required>
         </div>
         <div>
             <fieldset>
-                <legend id="legendGender"> Gender</legend>
+                <legend id="legendGender"> <i class="fa-solid fa-mars-and-venus"></i>Gender</legend>
                 <div>
                     <input type="radio" id="male" name="gender" value="M" onclick="handleGenderSelect(this)">
-                    <label for="male">Male</label>
+                    <label for="male"><i class="fa-solid fa-person"></i>Male</label>
                 </div>
                 <div>
                     <input type="radio" id="female" name="gender" value="F" onclick="handleGenderSelect(this)">
-                    <label for="female">Female</label>
+                    <label for="female"><i class="fa-solid fa-person-dress"></i>Female</label>
                 </div>
             </fieldset>
         </div>
         <div>
-            <p>Faculty</p>
+            <p><i class="fa-solid fa-school"></i>Faculty</p>
             <input type="text" placeholder="Enter faculty" value="" id="faculty" required>
         </div>
         <div>
-            <p>Admission Year</p>
+            <p><i class="fa-solid fa-calendar-check"></i>Admission Year</p>
             <input type="number" placeholder="Enter year of admission" value="" id="admissionYear" required>
         </div>
         <div>
             <fieldset>
-                <legend id="legendLevel"> Level</legend>
+                <legend id="legendLevel"><i class="fa-solid fa-user-graduate"></i>Level</legend>
                 <div>
                     <input type="radio" id="uggrad" name="level" value="undergraduate" onclick="handleLevelSelect(this)">
-                    <label for="uggrad">Undergraduate</label>
+                    <label for="uggrad"><i class="fa-solid fa-book-open-reader"></i>Undergraduate</label>
                 </div>
                 <div>
                     <input type="radio" id="postgrad" name="level" value="postgraduate" onclick="handleLevelSelect(this)">
-                    <label for="postgrad">Postgraduate</label>
+                    <label for="postgrad"><i class="fa-solid fa-user-graduate"></i>Postgraduate</label>
                 </div>
             </fieldset>
         </div>
         <div id="resHall" hidden>
-            <p>Residential Hall</p>
+            <p><i class="fa-solid fa-location-dot"></i>Residential Hall</p>
             <input type="text" placeholder="Enter residential hall name" id="residentialHall">
         </div>
         <div id="supervisor" hidden>
-            <p>Supervisor Name</p>
+            <p><i class="fa-solid fa-chalkboard-user"></i>Supervisor Name</p>
             <input type="text" placeholder="Enter supervisor's name" value="" id="supervisorName">
         </div>
         <div id="rtopic" hidden>
-            <p>Research Topic</p>
+            <p><i class="fa-solid fa-book-open"></i>Research Topic</p>
             <input type="text" placeholder="Enter research topic title" value="" id="researchTopic">
         </div> <br>
         <div>
-            <button id="formSubmit">Submit</button>
+            <button id="formSubmit"><i class="fa-solid fa-cloud-arrow-up"></i>Submit</button>
         </div>
     </form>
     </div>

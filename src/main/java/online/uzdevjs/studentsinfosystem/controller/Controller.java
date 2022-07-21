@@ -16,18 +16,19 @@ import org.springframework.web.bind.annotation.*;
 public class Controller {
     private static final Main main = Main.getInstance();
 
-    @GetMapping("/displayAll")
+    @GetMapping("/")
     public Response getAll(){
         return main.getAll();
     }
 
-    @PostMapping("/add")
+    @PostMapping("/")
     public Response add(@RequestBody StudentDTO student){
         return main.add(student);
     }
 
     @DeleteMapping("/{studentId}")
     public Response delete(@PathVariable Long studentId){
+        System.out.println(studentId);
         return main.remove(studentId);
     }
 

@@ -11,3 +11,6 @@ fieldset{
     display: flex;
     align-items: center;
 }
+.fa-solid{
+    margin-right: 5px;
+}

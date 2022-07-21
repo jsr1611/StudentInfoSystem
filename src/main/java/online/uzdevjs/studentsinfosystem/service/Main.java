@@ -62,7 +62,7 @@ public class Main {
             );
         }
         else {
-            return new Response(false, "Incorrect student record information was provided: " + student.toString(), HttpStatus.OK);
+            return new Response(false, "Incorrect student record information was provided: " + student.toString(), HttpStatus.BAD_REQUEST);
         }
         allStudents.add(st);
         return new Response(true, "New student record has been successfully added.", st, HttpStatus.OK);
@@ -74,7 +74,7 @@ public class Main {
             allStudents.removeIf(student -> student.getStudentID().equals(studentID));
             response = new Response(true, "Student record has been successfully deleted", HttpStatus.OK);
         }else {
-            response = new Response(false, "Student record with id (" + studentID + ") was not found.", HttpStatus.OK);
+            response = new Response(false, "Student record with id (" + studentID + ") was not found.", HttpStatus.NOT_FOUND);
         }
         return response;
     }
@@ -82,8 +82,7 @@ public class Main {
         List<Student> collect = allStudents.stream().filter(student -> student.getStudentID().equals(studentId)).collect(Collectors.toList());
 
         if(collect.size()>0){
-           Student found = collect.get(0);
-           return found;
+            return collect.get(0);
         }
         return null;
     }
@@ -95,7 +94,7 @@ public class Main {
             response = new Response(true, "Student Record", student, HttpStatus.OK);
         }
         else {
-            response = new Response(false, "Student record with id (" + studentId + ") was not found.", HttpStatus.OK);
+            response = new Response(false, "Student record with id (" + studentId + ") was not found.", HttpStatus.NOT_FOUND);
         }
             return response;
     }

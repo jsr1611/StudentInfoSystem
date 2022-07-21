@@ -62,7 +62,7 @@ public class Main {
             );
         }
         else {
-            return new Response(false, "Wrong information was provided", HttpStatus.OK);
+            return new Response(false, "Incorrect student record information was provided: " + student.toString(), HttpStatus.OK);
         }
         allStudents.add(st);
         return new Response(true, "New student record has been successfully added.", st, HttpStatus.OK);
@@ -74,7 +74,7 @@ public class Main {
             allStudents.removeIf(student -> student.getStudentID().equals(studentID));
             response = new Response(true, "Student record has been successfully deleted", HttpStatus.OK);
         }else {
-            response = new Response(false, "Student with " + studentID + " id was not found.", HttpStatus.OK);
+            response = new Response(false, "Student record with id (" + studentID + ") was not found.", HttpStatus.OK);
         }
         return response;
     }
@@ -92,15 +92,15 @@ public class Main {
         Student student = findById(studentId);
         Response response;
         if(student != null){
-            response = new Response(true, "Student Info", student, HttpStatus.OK);
+            response = new Response(true, "Student Record", student, HttpStatus.OK);
         }
         else {
-            response = new Response(false, "Student with " + studentId + " id was not found.", HttpStatus.OK);
+            response = new Response(false, "Student record with id (" + studentId + ") was not found.", HttpStatus.OK);
         }
             return response;
     }
 
     public Response getAll(){
-        return new Response(true, "All records", allStudents, HttpStatus.OK);
+        return new Response(true, "All Records", allStudents, HttpStatus.OK);
     }
 }

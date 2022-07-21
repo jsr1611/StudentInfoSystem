@@ -19,6 +19,7 @@ template.innerHTML = `
 `;
 
 const table = document.getElementById("table");
+const tbody = document.getElementById("tbody");
 table.appendChild(template.content);
 
 function createEl(tag, val){
@@ -28,7 +29,6 @@ function createEl(tag, val){
 }
 
 function displayIt(records){
-    const tbody = document.getElementById("tbody");
     const UGGRAD = "UNDERGRADUATE";
     const PGGRAD = "POSTGRADUATE";
     records.forEach(rec => {
@@ -57,4 +57,9 @@ function displayIt(records){
         tbody.appendChild(tr);
     });
 
+}
+
+function displayMessage(msg) {
+    let par = createEl("p", msg);
+    document.getElementById("message").appendChild(par);
 }

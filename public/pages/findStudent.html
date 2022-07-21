@@ -7,6 +7,13 @@
 #findBtn{
     margin: auto 5px;
 }
+#message{
+    display:flex;
+    justify-content:center;
+    background-color: antiquewhite;
+    margin: auto 10px;
+    font-size: 16px;
+}
 </style>
 <!doctype html>
 <html lang="en">
@@ -38,6 +45,9 @@
     <table id="table">
     <script src="../js/displayComponent.js"></script>
     </table>
+    <div id="message">
+
+    </div>
     <script>
     const tableHead = document.getElementById("thead");
     const tableBody = document.getElementById("tbody");
@@ -50,18 +60,17 @@
         event.preventDefault();
         console.log(stdID.value);
         fetch(`https://xuni-studentinfo.herokuapp.com/${stdID.value}`,
-            // {
-            // method: 'GET',
-            // body: JSON.stringify({studentID: stdID.value}),
             {
-                headers: {
-                    'accept': '*/*',
-                },
+            headers: { 'accept': '*/*', },
             })
             .then((response) => response.json())
              .then(data => {
                  console.log(data);
-                 displayIt([data]);
+                 if(data.success) {
+                     displayIt([data.data]);
+                 }else {
+                     displayMessage(data.message);
+                 }
             })
             .catch((error) => {
                 console.log(error);

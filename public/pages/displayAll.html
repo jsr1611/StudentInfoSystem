@@ -23,10 +23,19 @@
         fetch("http://xuni-studentinfo.herokuapp.com/displayAll")
             .then((response) => response.json())
             .then((data) => {
-                records = data;
-                displayIt(records);
+                if(data.success){
+                    records = data.data;
+                    if(records.length > 0){
+                        displayIt(records);
+                    }
+                    else {
+                        displayMessage("No student records were found");
+                    }
+                }
+            })
+            .catch((error) =>{
+                displayMessage(error);
             });
-
     </script>
 </body>
 </html>

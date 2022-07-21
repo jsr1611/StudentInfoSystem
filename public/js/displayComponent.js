@@ -29,6 +29,14 @@ function createEl(tag, p_class, val){
     return el;
 }
 
+function clearTable(){
+    let tbody = recordsTable.querySelector("tbody");
+    if(recordsTable.rows.length > 1){
+        console.log("big table");
+        tbody.innerHTML = "";
+    }
+}
+
 function displayIt(records){
     const tbody = document.getElementById("tbody");
     const UGGRAD = "UNDERGRADUATE";

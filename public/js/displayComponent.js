@@ -1,5 +1,5 @@
-const template = document.createElement("template");
-template.innerHTML = `
+const tableTemplate = document.createElement("template");
+tableTemplate.innerHTML = `
     <thead id="thead">
         <tr>
             <th>Student ID</th>
@@ -18,12 +18,13 @@ template.innerHTML = `
     </tbody>
 `;
 
-const table = document.getElementById("table");
-table.appendChild(template.content);
+const table = document.getElementById("recordsTable");
+table.appendChild(tableTemplate.content);
 
 
-function createEl(tag, val){
+function createEl(tag, p_class, val){
     const el = document.createElement(tag);
+    el.classList.add(p_class);
     el.innerText = val;
     return el;
 }
@@ -45,23 +46,33 @@ function displayIt(records){
             rtopic = rec.researchTopic;
         }
 
-        tr.appendChild(createEl("th", rec.studentID));
-        tr.appendChild(createEl("th", rec.fullName));
-        tr.appendChild(createEl("th", rec.nationality));
-        tr.appendChild(createEl("th", rec.gender));
-        tr.appendChild(createEl("th", rec.faculty));
-        tr.appendChild(createEl("th", rec.admissionYear));
-        tr.appendChild(createEl("th", rec.level));
-        tr.appendChild(createEl("th", resHall));
-        tr.appendChild(createEl("th", supervisor));
-        tr.appendChild(createEl("th", rtopic));
+        tr.appendChild(createEl("th", "th", rec.studentID));
+        tr.appendChild(createEl("th", "th", rec.fullName));
+        tr.appendChild(createEl("th", "th", rec.nationality));
+        tr.appendChild(createEl("th", "th", rec.gender));
+        tr.appendChild(createEl("th", "th", rec.faculty));
+        tr.appendChild(createEl("th", "th", rec.admissionYear));
+        tr.appendChild(createEl("th", "th", rec.level));
+        tr.appendChild(createEl("th", "th", resHall));
+        tr.appendChild(createEl("th", "th", supervisor));
+        tr.appendChild(createEl("th", "th", rtopic));
         tbody.appendChild(tr);
     });
 
 }
 
-function displayMessage(msg) {
-    let par = createEl("p", msg);
-    let msgEl = document.getElementById("message");
-    msgEl.appendChild(par);
+function displayMessage(msg, elementId) {
+    console.log(elementId);
+    let htmlElement = document.querySelector(elementId);
+    console.log(htmlElement);
+    let par = htmlElement.querySelector("p.msg");
+    console.log(par);
+    if(par == null ){
+        par = createEl("p", "msg", msg);
+        htmlElement.appendChild(par);
+    }else {
+        console.log(par.innerText);
+        par.innerText = msg;
+    }
+
 }

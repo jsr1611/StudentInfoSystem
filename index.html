@@ -5,12 +5,183 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="public/css/styles.css">
+<link rel="stylesheet" href="public/css/tableStyles.css">
+<link rel="stylesheet" href="public/css/findStyles.css">
 <title>X University</title>
 <body>
+<h2 id="home">Student Information System</h2>
+<button id="exit">Exit</button>
+<div id="menu">
+    <button id="add">Add</button>
+    <button id="remove">Remove</button>
+    <button id="find">Find</button>
+    <button id="display">Display All</button>
+</div>
+<hr>
 <script src="public/js/commonFunctions.js"></script>
-<script src="public/js/header.js"></script>
+<script src="public/js/findStudentComponent.js"></script>
 <div id="contents" class="contents">
 
 </div>
+<table id="recordsTable">
+    <script src="public/js/displayComponent.js"> </script>
+</table>
+
+<script>
+    const btnExit = document.getElementById("exit");
+    const home = document.getElementById("home");
+    const container = document.getElementById("contents");
+    const recordsTable = document.getElementById("recordsTable");
+
+
+
+
+    const add = document.getElementById("add");
+    const remove = document.getElementById("remove");
+    const find = document.getElementById("find");
+    const display = document.getElementById("display");
+
+
+
+    const removeTemplate = createTemplate("contents", "removeStudent",  "Remove A Student");
+    const findTemplate = createTemplate("contents", "findStudent", "Find A Student");
+    container.appendChild(removeTemplate.content);
+    const removeTempEl = document.getElementById("removeStudent");
+    removeTempEl.hidden = true;
+
+    container.appendChild(findTemplate.content);
+    const findTempEl = document.getElementById("findStudent");
+    findTempEl.hidden = true;
+
+    recordsTable.hidden = true;
+    const findBtn = findTempEl.querySelector("#findBtn"),
+        returnHomeBtn = findTempEl.querySelector("#returnHomeBtn"),
+        findBtnRm = removeTempEl.querySelector("#findBtn"),
+        returnHomeBtnRm = removeTempEl.querySelector("#returnHomeBtn");
+
+    function clearTable(){
+        let tbody = recordsTable.querySelector("tbody");
+        if(recordsTable.rows.length > 1){
+            console.log("big table");
+            tbody.innerHTML = "";
+        }
+    }
+    function clearErrorMsg(qeuryTag){
+        const msgEl = findTempEl.querySelector(qeuryTag);
+        if(msgEl != null){
+            msgEl.innerHTML = "";
+        }
+    }
+
+    function handleExit(event){
+        let response = confirm("Do you really want to exit the application?");
+        if(response){
+            window.close();
+        }
+    }
+
+    function displayAll(event){
+        recordsTable.hidden = false;
+        clearTable();
+        let records = [];
+        fetch("http://xuni-studentinfo.herokuapp.com/displayAll")
+            .then((response) => response.json())
+            .then((data) => {
+                if(data.success){
+                    records = data.data;
+                    if(records.length > 0){
+                        clearErrorMsg("p.msg");
+                        displayIt(records);
+                    }
+                    else {
+                        displayMessage("No student records were found", "contents");
+                    }
+                }
+            })
+            .catch((error) =>{
+                console.log(error);
+            });
+    }
+
+    function addStudent(event){
+        console.log("Going to add new student!");
+        let linkAdd = "";
+        if(window.location.href.includes("/public")){
+            linkAdd = "./addStudent.html";
+        }else{
+            linkAdd = "./public/pages/addStudent.html";
+        }
+        clickLink(linkAdd);
+    }
+
+    function handleRemove(event){
+        event.preventDefault();
+        removeTempEl.hidden = false;
+        findTempEl.hidden = true;
+        recordsTable.hidden = true;
+    }
+
+
+    function findStudent(event){
+        removeTempEl.hidden = true;
+        findTempEl.hidden = false;
+        recordsTable.hidden = true;
+    }
+
+
+    function displayOne(event){
+        event.preventDefault();
+
+        const stdID = findTempEl.querySelector("#studentID");
+        if(stdID.value === ""){
+            displayMessage("Please, enter student ID to search!", "#findStudent .message");
+        }
+        else {
+
+            fetch(`https://xuni-studentinfo.herokuapp.com/${stdID.value}`,
+                {
+                    headers: {'accept': '*/*',},
+                })
+                .then((response) => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.success) {
+                        recordsTable.hidden = false;
+                        clearErrorMsg("p.msg");
+                        clearTable();
+                        displayIt([data.data]);
+                    } else {
+                        recordsTable.hidden = true;
+                        displayMessage(data.message, "#findStudent .message");
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    }
+
+    function removeStudent(event){
+        event.preventDefault();
+        console.log("Removing student");
+    }
+
+
+
+    btnExit.addEventListener("click", handleExit);
+    display.addEventListener("click", displayAll);
+    add.addEventListener("click", addStudent);
+    remove.addEventListener("click", handleRemove);
+    find.addEventListener("click", findStudent);
+    home.addEventListener("click", GoHome);
+
+    findBtn.addEventListener("click", displayOne);
+    findBtnRm.addEventListener("click", removeStudent);
+
+    returnHomeBtn.addEventListener("click", GoHome);
+    returnHomeBtnRm.addEventListener("click", GoHome);
+
+
+</script>
 </body>
 </html>

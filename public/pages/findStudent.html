@@ -31,7 +31,7 @@
         <form id="findForm">
             <div>
                 <p>Student ID</p>
-                <input type="number" id="studentID" required placeholder="Enter student ID">
+                <input type="number" id="studentID" placeholder="Enter student ID">
             </div>
             <br>
             <div>
@@ -58,26 +58,31 @@
 
     function handleFindStudent(event) {
         event.preventDefault();
-        console.log(stdID.value);
-        fetch(`https://xuni-studentinfo.herokuapp.com/${stdID.value}`,
-            {
-            headers: { 'accept': '*/*', },
-            })
-            .then((response) => response.json())
-             .then(data => {
-                 console.log(data);
-                 if(data.success) {
-                     displayIt([data.data]);
-                 }else {
-                     displayMessage(data.message);
-                 }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        if(stdID.value === ""){
+            displayMessage("Please, enter student ID to search!");
+        }
+        else {
+            fetch(`https://xuni-studentinfo.herokuapp.com/${stdID.value}`,
+                {
+                    headers: {'accept': '*/*',},
+                })
+                .then((response) => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.success) {
+                        displayIt([data.data]);
+                    } else {
+                        displayMessage(data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     }
 
     function handleReturnHome(event){
+        event.preventDefault();
         GoHome();
     }
 

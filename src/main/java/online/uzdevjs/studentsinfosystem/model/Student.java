@@ -6,8 +6,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * Project Students Info System
@@ -35,6 +33,34 @@ public abstract class Student {
 
     @LastModifiedDate
     private Instant updateAt;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setLevel(StudentLevel level) {
+        this.level = level;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Instant getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Instant updateAt) {
+        this.updateAt = updateAt;
+    }
 
     public String getFullName() {
         return fullName;
@@ -116,13 +142,16 @@ public abstract class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "studentID=" + studentID +
+                "id=" + id +
+                ", studentID=" + studentID +
                 ", fullName='" + fullName + '\'' +
                 ", nationality='" + nationality + '\'' +
                 ", gender='" + gender + '\'' +
                 ", faculty='" + faculty + '\'' +
                 ", admissionYear=" + admissionYear +
-                ", level='" + level + '\'' +
+                ", level=" + level +
+                ", createdAt=" + createdAt +
+                ", updateAt=" + updateAt +
                 '}';
     }
 }

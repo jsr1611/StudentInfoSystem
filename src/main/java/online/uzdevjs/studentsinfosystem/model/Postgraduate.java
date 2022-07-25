@@ -1,5 +1,7 @@
 package online.uzdevjs.studentsinfosystem.model;
 
+import online.uzdevjs.studentsinfosystem.enums.StudentLevel;
+
 import javax.persistence.Entity;
 
 /**
@@ -27,6 +29,7 @@ public class Postgraduate extends Student{
     public Postgraduate() {
 
     }
+
 
     public String getSupervisorName() {
         return supervisorName;

@@ -27,8 +27,11 @@ public class Service {
     }
 
     public Response save(StudentDTO student){
-        Student st = null;
-        if(student.getLevel().equals(StudentLevel.POSTGRADUATE)){
+        Student st = findById(student.getStudentID());
+        if(st != null){
+            return new Response(false, "Student with this ID(" +student.getStudentID()+") already  exists in the database: ", HttpStatus.BAD_REQUEST);
+        }
+        else if(student.getLevel().equals(StudentLevel.POSTGRADUATE)){
             st = new Postgraduate(
                     student.getStudentID(),
                     student.getFullName(),
@@ -36,7 +39,7 @@ public class Service {
                     student.getGender(),
                     student.getFaculty(),
                     student.getAdmissionYear(),
-                    student.getLevel().toString(),
+                    student.getLevel().name(),
                     student.getSupervisorName(),
                     student.getResearchTopic());
         }else if(student.getLevel().equals(StudentLevel.UNDERGRADUATE)){
@@ -47,7 +50,7 @@ public class Service {
                     student.getGender(),
                     student.getFaculty(),
                     student.getAdmissionYear(),
-                    student.getLevel().toString(),
+                    student.getLevel().name(),
                     student.getResidentialHall()
             );
         }

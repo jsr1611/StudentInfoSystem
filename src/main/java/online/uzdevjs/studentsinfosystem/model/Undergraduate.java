@@ -1,5 +1,7 @@
 package online.uzdevjs.studentsinfosystem.model;
 
+import online.uzdevjs.studentsinfosystem.enums.StudentLevel;
+
 import javax.persistence.Entity;
 
 /**

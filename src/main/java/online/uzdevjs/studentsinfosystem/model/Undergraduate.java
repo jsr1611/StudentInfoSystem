@@ -1,12 +1,14 @@
 package online.uzdevjs.studentsinfosystem.model;
 
+import javax.persistence.Entity;
+
 /**
  * Project Students Info System
  * Author: jimmy
  * Created: 7/19/2022 - 6:53 PM
  */
 
-
+@Entity
 public class Undergraduate extends Student {
     private String residentialHall;
 
@@ -17,6 +19,10 @@ public class Undergraduate extends Student {
 
     public Undergraduate(String residentialHall) {
         this.residentialHall = residentialHall;
+    }
+
+    public Undergraduate() {
+
     }
 
     public String getResidentialHall() {

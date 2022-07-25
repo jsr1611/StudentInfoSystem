@@ -1,12 +1,14 @@
 package online.uzdevjs.studentsinfosystem.model;
 
+import javax.persistence.Entity;
+
 /**
  * Project Students Info System
  * Author: jimmy
  * Created: 7/19/2022 - 6:53 PM
  */
 
-
+@Entity
 public class Postgraduate extends Student{
     private String supervisorName;
     private String researchTopic;
@@ -20,6 +22,10 @@ public class Postgraduate extends Student{
     public Postgraduate(String supervisorName, String researchTopic) {
         this.supervisorName = supervisorName;
         this.researchTopic = researchTopic;
+    }
+
+    public Postgraduate() {
+
     }
 
     public String getSupervisorName() {

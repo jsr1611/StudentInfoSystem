@@ -20,14 +20,14 @@ public class StudentDTO {
     private String supervisorName;
     private String researchTopic;
 
-    public StudentDTO(Long studentID, String fullName, String nationality, String gender, String faculty, Integer admissionYear, StudentLevel level, String residentialHall, String supervisorName, String researchTopic) {
+    public StudentDTO(Long studentID, String fullName, String nationality, String gender, String faculty, Integer admissionYear, String level, String residentialHall, String supervisorName, String researchTopic) {
         this.studentID = studentID;
         this.fullName = fullName;
         this.nationality = nationality;
         this.gender = gender;
         this.faculty = faculty;
         this.admissionYear = admissionYear;
-        this.level = level;
+        setLevel(level);
         this.residentialHall = residentialHall;
         this.supervisorName = supervisorName;
         this.researchTopic = researchTopic;
@@ -109,8 +109,16 @@ public class StudentDTO {
         return level;
     }
 
-    public void setLevel(StudentLevel level) {
-        this.level = level;
+    public void setLevel(String level) {
+        if(level != null && level.equalsIgnoreCase("postgraduate")){
+            this.level = StudentLevel.POSTGRADUATE;
+        }
+        else if(level != null && level.equalsIgnoreCase("undergraduate")){
+            this.level = StudentLevel.UNDERGRADUATE;
+        }
+        else {
+            throw new IllegalStateException("Wrong student level: " + level);
+        }
     }
 
     @Override

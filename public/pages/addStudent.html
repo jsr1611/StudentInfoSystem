@@ -167,12 +167,12 @@
                     displayIt([records]);
                 }
                 else {
-                    displayMessage("An unexpected error has occurred while adding new student record into system", "message addStudent");
+                    displayMessage(data.message, "message addStudent");
                 }
 
             })
             .catch((error) => {
-                console.log(error);
+                displayMessage(error, ".message.addStudent");
             });
 
         }

@@ -1,8 +1,13 @@
 package online.uzdevjs.studentsinfosystem.model;
 
 import online.uzdevjs.studentsinfosystem.enums.StudentLevel;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Project Students Info System
@@ -22,6 +27,14 @@ public abstract class Student {
     private String faculty;
     private Integer admissionYear;
     private StudentLevel level;
+    @CreationTimestamp
+    @Column(name = "created_at",
+            nullable = false,
+            updatable = false)
+    private Instant createdAt;
+
+    @LastModifiedDate
+    private Instant updateAt;
 
     public String getFullName() {
         return fullName;

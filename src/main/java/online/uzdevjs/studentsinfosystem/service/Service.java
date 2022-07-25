@@ -29,7 +29,7 @@ public class Service {
     public Response save(StudentDTO student){
         Student st = findById(student.getStudentID());
         if(st != null){
-            return new Response(false, "Student with this ID(" +student.getStudentID()+") already  exists in the database: ", HttpStatus.BAD_REQUEST);
+            return new Response(false, "Student with this ID (" +student.getStudentID()+") already  exists in the database. ", HttpStatus.BAD_REQUEST);
         }
         else if(student.getLevel().equals(StudentLevel.POSTGRADUATE)){
             st = new Postgraduate(
@@ -67,7 +67,7 @@ public class Service {
         if(student != null){
 //            allStudents.removeIf(student -> student.getStudentID().equals(studentID));
             studentRepo.delete(student);
-            response = new Response(true, "Student record has been successfully deleted", HttpStatus.OK);
+            response = new Response(true, "Student record has been successfully deleted.", HttpStatus.OK);
         }else {
             response = new Response(false, "Student record with id (" + studentID + ") was not found.", HttpStatus.NOT_FOUND);
         }

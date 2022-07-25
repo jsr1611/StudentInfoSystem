@@ -32,8 +32,13 @@ function createEl(tag, p_class, val){
 function clearTable(){
     let tbody = recordsTable.querySelector("tbody");
     if(recordsTable.rows.length > 1){
-        console.log("big table");
         tbody.innerHTML = "";
+    }
+    let err_el = document.querySelector(".msg");
+    if(err_el != null){
+        err_el.innerHTML = "";
+        err_el = err_el.parentNode;
+        err_el.classList.remove("error-msg");
     }
 }
 
@@ -70,16 +75,13 @@ function displayIt(records){
 }
 
 function displayMessage(msg, elementId) {
-    console.log(elementId);
     let htmlElement = document.querySelector(elementId);
-    console.log(htmlElement);
+    htmlElement.classList.add("error-msg");
     let par = htmlElement.querySelector("p.msg");
-    console.log(par);
     if(par == null ){
         par = createEl("p", "msg", msg);
         htmlElement.appendChild(par);
     }else {
-        console.log(par.innerText);
         par.innerText = msg;
     }
 

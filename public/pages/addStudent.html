@@ -130,7 +130,6 @@
         function handleSubmitForm(event){
             event.preventDefault();
             resHall = resHallEl.querySelector("input").value;
-            console.log(stdID.value);
             supervisor = supervisorEl.querySelector("input").value;
             rtopic = rtopicEl.querySelector("input").value;
 
@@ -158,7 +157,6 @@
             .then((data) => {
                 console.log(data);
                 if(data.success){
-
                     recordsTable.hidden = false;
                     formContainer.hidden = true;
                     addNewDiv.style.visibility='';
@@ -167,7 +165,7 @@
                     displayIt([records]);
                 }
                 else {
-                    displayMessage(data.message, "message addStudent");
+                    displayMessage(data.message, ".message.addStudent");
                 }
 
             })

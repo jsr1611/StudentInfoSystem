@@ -14,3 +14,10 @@ fieldset{
 .fa-solid{
     margin-right: 5px;
 }
+.error-msg{
+    background-color: red;
+    color: white;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+}

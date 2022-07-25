@@ -6,4 +6,4 @@ spring:
     password: 91d35ec8a1832eab56d0c6ba3ea579b10e495e490dc04c521a7915d0687af59b
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update

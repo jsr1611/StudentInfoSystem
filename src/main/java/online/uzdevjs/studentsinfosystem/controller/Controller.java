@@ -2,7 +2,7 @@ package online.uzdevjs.studentsinfosystem.controller;
 
 import online.uzdevjs.studentsinfosystem.dto.Response;
 import online.uzdevjs.studentsinfosystem.dto.StudentDTO;
-import online.uzdevjs.studentsinfosystem.service.Main;
+import online.uzdevjs.studentsinfosystem.service.Service;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -14,27 +14,29 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/")
 public class Controller {
-    private static final Main main = Main.getInstance();
+    private Service service;
+    public Controller(Service service){
+        this.service = service;
+    }
 
     @GetMapping("/")
     public Response getAll(){
-        return main.getAll();
+        return service.getAll();
     }
 
     @PostMapping("/")
     public Response add(@RequestBody StudentDTO student){
-        return main.add(student);
+        return service.save(student);
     }
 
     @DeleteMapping("/{studentId}")
     public Response delete(@PathVariable Long studentId){
-        System.out.println(studentId);
-        return main.remove(studentId);
+        return service.delete(studentId);
     }
 
     @GetMapping("/{studentId}")
     public Response find(@PathVariable Long studentId){
-        return main.find(studentId);
+        return service.find(studentId);
     }
 
 }

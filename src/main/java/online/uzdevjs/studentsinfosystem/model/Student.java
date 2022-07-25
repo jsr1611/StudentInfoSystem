@@ -2,13 +2,19 @@ package online.uzdevjs.studentsinfosystem.model;
 
 import online.uzdevjs.studentsinfosystem.enums.StudentLevel;
 
+import javax.persistence.*;
+
 /**
  * Project Students Info System
  * Author: jimmy
  * Created: 7/19/2022 - 6:52 PM
  */
-
+@Entity
+@Table
 public abstract class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Long studentID;
     private String fullName;
     private String nationality;

@@ -32,7 +32,7 @@ Yangi ochilgan “X University” uchun “Talabalar ma’lumot tizimi” (Stude
 ## Deployment 
 
 - [x] Backend documentation: [link](https://xuni-studentinfo.herokuapp.com/swagger-ui/index.html#/)
-- [x] Frontend website live at [link](http://uzdevjs.online/StudentInfoSystem/)
+- [x] Frontend website live at [link](https://jsr1611.github.io/StudentInfoSystem/)
 
 ## Issues
 - [x] Remove record not working at frontend but no issues at backend [fixed]
